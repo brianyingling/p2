@@ -69,23 +69,52 @@ class PigLatin {
     }
 
     private function postFormat($text) {
-        $sentences = explode('.', $text);
-        $pg = preg_split($this->nonAlphanumericRegex, $text, -1, PREG_SPLIT_OFFSET_CAPTURE);
-        dump($pg);
-        dump($text[118]);
-        dump($text[167]);
-        $formattedSentences = array_map(function($sentence) {
-            $trimmedSentence = trim($sentence);
+        $sentences = preg_split($this->nonAlphanumericRegex, $text, -1, PREG_SPLIT_OFFSET_CAPTURE);
+        $formattedSentences = array_map(function($sentence) use ($text) {
+            // dump($sentence);
+            $trimmedSentence = trim($sentence[0]);
             $words = explode(' ', $trimmedSentence);
+            // dump($words);
             $formattedWords = array_map(function($word) use ($words) {
-                return ($words[0] && $word == $words[0])
-                    ? strtoupper($word[0]) . strtolower(substr($word, 1))
-                    : strtolower($word);
+                // dump($words);
+                $trimmedWord = trim($word);
+                dump(isset($word[0]));
+                if (isset($word[0]) && $word[0] != '' && ($words[0] == $trimmedWord)) {
+                    dump($word);
+                    return strtoupper($word[0]) . strtolower(substr($word, 1));
+                }
+                return $word;
             }, $words);
-            return join(' ', $formattedWords);
+            // dump($formattedWords);
+            // dump($sentence[1]);
+            if ($sentence[1] != 0) {
+                return $text[$sentence[1]-1] . ' ' . join(' ', $formattedWords);
+            } else {
+                return join(' ', $formattedWords);
+            }
+            // return $sentence;
         }, $sentences);
-        return join('. ', $formattedSentences);
+        // dump($formattedSentences);
+        return join('', $formattedSentences);
     }
+    // private function postFormat($text) {
+    //     $sentences = explode('.', $text);
+    //     $pg = preg_split($this->nonAlphanumericRegex, $text, -1, PREG_SPLIT_OFFSET_CAPTURE);
+    //     dump($pg);
+    //     dump($text[118]);
+    //     dump($text[167]);
+    //     $formattedSentences = array_map(function($sentence) {
+    //         $trimmedSentence = trim($sentence);
+    //         $words = explode(' ', $trimmedSentence);
+    //         $formattedWords = array_map(function($word) use ($words) {
+    //             return ($words[0] && $word == $words[0])
+    //                 ? strtoupper($word[0]) . strtolower(substr($word, 1))
+    //                 : strtolower($word);
+    //         }, $words);
+    //         return join(' ', $formattedWords);
+    //     }, $sentences);
+    //     return join('. ', $formattedSentences);
+    // }
 
     private function startsWithOneConsonant($word) {
         if (strlen($word) < 1) return false;
