@@ -66,5 +66,4 @@ class PigLatin {
     private function isVowel($letter) {
         return strpos($this->vowels, $letter) !== false;
     }
-
 }
