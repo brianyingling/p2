@@ -9,7 +9,7 @@ use DWA\Form;
 
 $form = new Form($_POST);
 
-$text       = $form->get('text');
+$text       = isset($text) ?? '';
 $suffix     = $form->get('suffix');
 $short      = $form->has('short');
 $translated = isset($translated) ?? '';
@@ -20,6 +20,7 @@ if ($form->isSubmitted()) {
     ]);
 
     if (!$form->hasErrors) {
+        $text = $form->get('text');
         $pigLatin = new PigLatin($text, $suffix, $short);
         $translated = $pigLatin->translate();
     }

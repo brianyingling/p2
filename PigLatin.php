@@ -34,10 +34,10 @@ class PigLatin {
                 return $word;
             }
             else if ($this->startsWithTwoConsonants($word)) {
-                return substr($word, 2) . substr($word,0,2) . $this->suffix;
+                return $this->format($word, 2);
             }
             else if ($this->startsWithOneConsonant($word)) {
-                return substr($word, 1) . substr($word,0,1) . $this->suffix;
+                return $this->format($word, 1);
             }
             else if ($this->startsWithVowel($word)) {
                 return $word . 'way';
@@ -48,6 +48,10 @@ class PigLatin {
         return join(' ', $translated);
     }
 
+    private function format($word, $chunkLength) {
+        return substr($word, $chunkLength) . substr($word, 0, $chunkLength) . $this->suffix;
+    }
+
     private function isVowel($letter) {
         return strpos($this->vowels, $letter) !== false;
     }
@@ -56,7 +60,7 @@ class PigLatin {
         if (strlen($word) < 1) return false;
         return !$this->isVowel($word[0]); 
     }
-    
+
     private function startsWithTwoConsonants($word) {
         if (strlen($word) < 2) return false;
        return !$this->isVowel($word[0]) && !$this->isVowel($word[1]);
@@ -67,4 +71,3 @@ class PigLatin {
         return $this->isVowel($word[0]);
     }
 }
-
