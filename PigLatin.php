@@ -8,7 +8,7 @@ class PigLatin {
     private $suffix;
     private $shortWordsUntouched;
     private $vowels = 'aeiou';
-    private $nonAlphanumericRegex = '/\.|\?|\!|\,|\;$/';
+    private $punctuationRegex = '/\.|\?|\!|\,|\;$/';
 
     public function __construct($text, $suffix = 'ay', $shortWordsUntouched = false) {
         $this->text = $text;
@@ -51,10 +51,10 @@ class PigLatin {
     }
 
     private function format($word, $chunkLength, $startsWithVowel) {
-        preg_match($this->nonAlphanumericRegex, $word, $match);
+        preg_match($this->punctuationRegex, $word, $match);
         $wordWithoutPunctuation = 
             $match 
-                ? preg_replace($this->nonAlphanumericRegex, '', $word) 
+                ? preg_replace($this->punctuationRegex, '', $word) 
                 : $word;
         
         return substr($wordWithoutPunctuation, $chunkLength) 
@@ -68,7 +68,7 @@ class PigLatin {
     }
 
     private function postFormat($text) {
-        $sentences = preg_split($this->nonAlphanumericRegex, $text, -1, PREG_SPLIT_OFFSET_CAPTURE);
+        $sentences = preg_split($this->punctuationRegex, $text, -1, PREG_SPLIT_OFFSET_CAPTURE);
         $formattedSentences = array_map(function($sentence) use ($text) {
             $trimmedSentence = trim($sentence[0]);
             $words = explode(' ', $trimmedSentence);
