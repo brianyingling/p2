@@ -1,5 +1,5 @@
 <?php
-
+    require 'formHandler.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -8,19 +8,11 @@
         <div class="container">
 
             <?php include 'partials/_description.php' ?>
+
+            <?php include 'partials/_form.php' ?>
             
-            <form method="POST" action="put-php-file-here">
-                {# textarea #}
-                <textarea name="text">
+            {# Translated result #}
 
-                {# suffix #}
-                <input type="radio" name="suffix">
-
-                {# optional rules #}
-                <input type="checkbox" name="short">
-
-                {# submit button #}
-                <input type="submit" name="submit">
         </div>
    </body>
 </html>
