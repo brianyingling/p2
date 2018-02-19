@@ -72,14 +72,14 @@ class PigLatin {
         $sentences = preg_split($this->nonAlphanumericRegex, $text, -1, PREG_SPLIT_OFFSET_CAPTURE);
         $formattedSentences = array_map(function($sentence) use ($text) {
             // dump($sentence);
-            $trimmedSentence = trim($sentence[0]);
-            $words = explode(' ', $trimmedSentence);
+            // $trimmedSentence = trim($sentence[0]);
+            $words = explode(' ', $sentence[0]);
             // dump($words);
             $formattedWords = array_map(function($word) use ($words) {
                 // dump($words);
-                $trimmedWord = trim($word);
-                dump(isset($word[0]));
-                if (isset($word[0]) && $word[0] != '' && ($words[0] == $trimmedWord)) {
+                // $trimmedWord = trim($word);
+                // dump(isset($word[0]));
+                if (isset($word[0]) && ($words[0] == $word)) {
                     dump($word);
                     return strtoupper($word[0]) . strtolower(substr($word, 1));
                 }
