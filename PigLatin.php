@@ -15,6 +15,7 @@ class PigLatin {
         $this->suffix = $suffix;
         $this->shortWordsUntouched = $shortWordsUntouched;
     }
+    
     // words that begin with a single consonant shift the first letter to 
     // the end and append suffix (e.g., hello => ellohay)
 
@@ -26,7 +27,6 @@ class PigLatin {
 
     // OPTIONAL: words that are shorter than 3 characters are left as is
     // e.g., an => an
-    
     public function translate() {
         $words = explode(' ', $this->text);
         
@@ -47,7 +47,6 @@ class PigLatin {
         }, $words);
         
         $translatedText = join(' ', $translated);
-        // return $translatedText;
         return $this->postFormat($translatedText);
     }
 
@@ -87,24 +86,6 @@ class PigLatin {
         }, $sentences);
         return join('', $formattedSentences);
     }
-    // private function postFormat($text) {
-    //     $sentences = explode('.', $text);
-    //     $pg = preg_split($this->nonAlphanumericRegex, $text, -1, PREG_SPLIT_OFFSET_CAPTURE);
-    //     dump($pg);
-    //     dump($text[118]);
-    //     dump($text[167]);
-    //     $formattedSentences = array_map(function($sentence) {
-    //         $trimmedSentence = trim($sentence);
-    //         $words = explode(' ', $trimmedSentence);
-    //         $formattedWords = array_map(function($word) use ($words) {
-    //             return ($words[0] && $word == $words[0])
-    //                 ? strtoupper($word[0]) . strtolower(substr($word, 1))
-    //                 : strtolower($word);
-    //         }, $words);
-    //         return join(' ', $formattedWords);
-    //     }, $sentences);
-    //     return join('. ', $formattedSentences);
-    // }
 
     private function startsWithOneConsonant($word) {
         if (strlen($word) < 1) return false;
