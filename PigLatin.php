@@ -14,9 +14,6 @@ class PigLatin {
         $this->suffix = $suffix;
         $this->shortWordsUntouched = $shortWordsUntouched;
     }
-
-        
-
     // words that begin with a single consonant shift the first letter to 
     // the end and append suffix (e.g., hello => ellohay)
 
@@ -33,14 +30,14 @@ class PigLatin {
         $words = explode(' ', $this->text);
         
         $translated = array_map(function($word) {
-            if ($shortWordsUntouched && strlen($word) < 3) {
+            if ($this->shortWordsUntouched && strlen($word) < 3) {
                 return $word;
             }
             else if ($this->startsWithTwoConsonants($word)) {
-                return substr($word, 2) . substr(0,2) . $this->suffix;
+                return substr($word, 2) . substr($word,0,2) . $this->suffix;
             }
             else if ($this->startsWithOneConsonant($word)) {
-                return substr($word, 1) . substr(0,1) . $this->suffix;
+                return substr($word, 1) . substr($word,0,1) . $this->suffix;
             }
             else if ($this->startsWithVowel($word)) {
                 return $word . 'way';
@@ -63,11 +60,11 @@ class PigLatin {
     
     private function startsWithTwoConsonants($word) {
         if (strlen($word) < 2) return false;
-        return !$this->isVowel($word[0]) && !$this->isVowel($word[1]);
+       return !$this->isVowel($word[0]) && !$this->isVowel($word[1]);
     }
 
     private function isVowel($letter) {
-        return strpos($this->vowels, $letter) != false;
+        return strpos($this->vowels, $letter) !== false;
     }
 
 }

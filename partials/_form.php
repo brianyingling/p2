@@ -1,12 +1,15 @@
-<form method="POST" action="put-php-file-here">
+<form method="POST" action="index.php">
     <label for="text">
         Text to translate
-        <textarea name="text"></textarea>
+        <textarea name="text">
+            <?php $form->prefill("text") ?>
+        </textarea>
     </label>
     
     <label for="suffix">
         Suffix
-        <input type="radio" name="suffix">
+        <input type="radio" name="suffix" value="ay"> "ay"
+        <input type="radio" name="suffix" value="a"> "a"
     </label>
     
     <label for="short">

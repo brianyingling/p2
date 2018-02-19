@@ -11,8 +11,9 @@
 
             <?php include 'partials/_form.php' ?>
             
-            {# Translated result #}
-
+            <div class="translated">
+                <?= $translated ?>
+            </div>
         </div>
    </body>
 </html>
