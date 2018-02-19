@@ -21,6 +21,8 @@ if ($form->isSubmitted()) {
 
     if (!$form->hasErrors) {
         $text = $form->get('text');
+        $suffix = $form->get('suffix');
+        $short = $form->has('short');
         $pigLatin = new PigLatin($text, $suffix, $short);
         $translated = $pigLatin->translate();
     }

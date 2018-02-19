@@ -8,6 +8,7 @@ class PigLatin {
     private $suffix;
     private $shortWordsUntouched;
     private $vowels = 'aeiou';
+    private $nonAlphanumericRegex = '/\.|\?|\!|\,$/';
 
     public function __construct($text, $suffix = 'ay', $shortWordsUntouched = false) {
         $this->text = $text;
@@ -34,13 +35,13 @@ class PigLatin {
                 return $word;
             }
             else if ($this->startsWithTwoConsonants($word)) {
-                return $this->format($word, 2);
+                return $this->format($word, 2, false);
             }
             else if ($this->startsWithOneConsonant($word)) {
-                return $this->format($word, 1);
+                return $this->format($word, 1, false);
             }
             else if ($this->startsWithVowel($word)) {
-                return $word . 'way';
+                return $this->format($word, strlen($word), true);
             }
             return $word;
         }, $words);
@@ -48,8 +49,17 @@ class PigLatin {
         return join(' ', $translated);
     }
 
-    private function format($word, $chunkLength) {
-        return substr($word, $chunkLength) . substr($word, 0, $chunkLength) . $this->suffix;
+    private function format($word, $chunkLength, $startsWithVowel) {
+        preg_match($this->nonAlphanumericRegex, $word, $match);
+        $wordWithoutPunctuation = 
+            $match 
+                ? preg_replace($this->nonAlphanumericRegex, '', $word) 
+                : $word;
+        
+        return substr($wordWithoutPunctuation, $chunkLength) 
+            . substr($wordWithoutPunctuation, 0, $chunkLength) 
+            . ($startsWithVowel ? 'way' : $this->suffix)
+            . ($match[0] ?? '');
     }
 
     private function isVowel($letter) {
