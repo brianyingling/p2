@@ -1,5 +1,4 @@
 <?php
-
 require('helpers.php');
 require('PigLatin.php');
 require('Form.php');
@@ -7,8 +6,7 @@ require('Form.php');
 use p2\PigLatin;
 use DWA\Form;
 
-$form = new Form($_POST);
-
+$form       = new Form($_POST);
 $text       = isset($text) ?? '';
 $suffix     = $form->get('suffix');
 $short      = $form->has('short');
@@ -27,4 +25,3 @@ if ($form->isSubmitted()) {
         $translated = $pigLatin->translate();
     }
 }
-
