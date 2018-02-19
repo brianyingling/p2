@@ -18,8 +18,10 @@ if ($form->isSubmitted()) {
     $errors = $form->validate([
         'text' => 'required'
     ]);
-    
-    $pigLatin = new PigLatin($text, $suffix, $short);
-    $translated = $pigLatin->translate();
+
+    if (!$form->hasErrors) {
+        $pigLatin = new PigLatin($text, $suffix, $short);
+        $translated = $pigLatin->translate();
+    }
 }
 

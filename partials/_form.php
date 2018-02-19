@@ -1,14 +1,13 @@
 <form method="POST" action="index.php">
-    <label for="text">
-        Text to translate
-        <textarea name="text">
-            <?php $form->prefill("text") ?>
+    <div class="form-group">
+        <label for="text">Text to Translate</label>
+        <textarea name="text" cols="15" rows="10" class='form-control'>
         </textarea>
-    </label>
+    </div>
     
     <label for="suffix">
         Suffix
-        <input type="radio" name="suffix" value="ay"> "ay"
+        <input type="radio" name="suffix" value="ay" checked> "ay"
         <input type="radio" name="suffix" value="a"> "a"
     </label>
     

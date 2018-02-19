@@ -48,9 +48,8 @@ class PigLatin {
         return join(' ', $translated);
     }
 
-    private function startsWithVowel($word) {
-        if (strlen($word) < 1) return false;
-        return $this->isVowel($word[0]);  
+    private function isVowel($letter) {
+        return strpos($this->vowels, $letter) !== false;
     }
 
     private function startsWithOneConsonant($word) {
@@ -63,7 +62,9 @@ class PigLatin {
        return !$this->isVowel($word[0]) && !$this->isVowel($word[1]);
     }
 
-    private function isVowel($letter) {
-        return strpos($this->vowels, $letter) !== false;
+    private function startsWithVowel($word) {
+        if (strlen($word) < 1) return false;
+        return $this->isVowel($word[0]);
     }
 }
+
