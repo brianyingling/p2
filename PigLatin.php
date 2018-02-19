@@ -46,7 +46,9 @@ class PigLatin {
             return $word;
         }, $words);
         
-        return join(' ', $translated);
+        $translatedText = join(' ', $translated);
+        // return $translatedText;
+        return $this->postFormat($translatedText);
     }
 
     private function format($word, $chunkLength, $startsWithVowel) {
@@ -65,6 +67,59 @@ class PigLatin {
     private function isVowel($letter) {
         return strpos($this->vowels, $letter) !== false;
     }
+
+    private function postFormat($text) {
+        $sentences = explode('.', $text);
+        $formattedSentences = array_map(function($sentence) {
+            $trimmedSentence =trim($sentence);
+            $words = explode(' ', $trimmedSentence);
+            $formattedWords = array_map(function($word) use ($words) {
+                // dump($word);
+                // dump($words);
+                // dump($word == $words[0]);
+                if ($word == $words[0]) {
+                    return strtoupper($word[0]) . strtolower(substr($word, 1));
+                } else {
+                    return strtolower($word);
+                }
+            }, $words);
+            return join(' ', $formattedWords);
+            // dump($trimmedSentence);
+            // return $trimmedSentence;
+        }, $sentences);
+        dump($formattedSentences);
+        return join('. ', $formattedSentences);
+        // return $text;
+        // $formattedSentences = array_map(function($sentence) {
+        //     $trimmedSentence = trim($sentence);
+        //     $words = explode(' ', $trimmedSentence);
+        //     $formattedWords = array_map(function($word) use ($words) {
+        //         dump($words[0]);
+        //         // dump($words);
+        //         return ($word == $words[0]) ? $word[0] : strtolower($word);
+        //     }, $words);
+        //     return join(' ', $formattedWords);
+        // }, $sentences);
+        // return join('.', $formattedSentences);
+    }
+
+    // private function postFormat($text) {
+    //     $sentences = explode('.', $text);
+    //     $formattedSentences = array_map(function($sentence) use ($sentences) {
+    //         $words = explode(' ', $sentence);
+    //         $formattedWords = array_map(function($word) use ($words) {
+    //             $formattedWord = strtolower($word);
+    //             dump('formatted: ' . $formattedWord);
+    //             dump('first: ' . $words[0]);
+    //             dump($formattedWord == $words[0]);
+    //             return (strtolower($formattedWord) == strtolower($words[0]))
+    //                 ? strtoupper($formattedWord[0]) . substr($formattedWord, strlen($formattedWord)-1)
+    //                 : $formattedWord;
+    //         }, $words);
+    //         return join(' ', $formattedWords);
+    //     }, $sentences);
+    //     return join('.', $formattedSentences);
+    // }
 
     private function startsWithOneConsonant($word) {
         if (strlen($word) < 1) return false;
