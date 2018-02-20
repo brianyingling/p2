@@ -18,6 +18,8 @@ class PigLatin
         $this->shortWordsUntouched = $shortWordsUntouched;
     }
 
+    // Converts the text value from English to Pig Latin. 
+    // This is the main method of the Pig Latin class. 
     public function translate()
     {
         $words = explode(' ', $this->text);
@@ -39,6 +41,10 @@ class PigLatin
         return $this->postFormat($translatedText);
     }
 
+    // Handles the shifting of chunks for a given word
+    // and appends either the suffix or 'way' when needed.
+    // Also removes any punctuation that may be coming 
+    // after the word and adds it back after appending.
     private function format($word, $chunkLength, $startsWithVowel)
     {
         preg_match($this->punctuationRegex, $word, $match);
@@ -53,11 +59,17 @@ class PigLatin
             . ($match[0] ?? '');
     }
 
+    // Determines whether a given letter is a vowel.
     private function isVowel($letter)
     {
         return strpos($this->vowels, $letter) !== false;
     }
 
+    // Handles capitalization of the first word of a sentence.
+    // It splits the text based on sentences' punctuation marks
+    // and handles the logic to return the punctuation mark aftewards.
+    // This function executes after format(), which handles the 
+    // shifting of words.
     private function postFormat($text)
     {
         $sentences = preg_split($this->punctuationRegex, $text, -1, PREG_SPLIT_OFFSET_CAPTURE);
@@ -79,6 +91,7 @@ class PigLatin
         return join('', $formattedSentences);
     }
 
+    // Determines whether a word starts with 1 consonant.
     private function startsWithOneConsonant($word)
     {
         if (strlen($word) < 1) {
@@ -87,6 +100,7 @@ class PigLatin
         return !$this->isVowel($word[0]);
     }
 
+    // Determines whether a word starts with 2 consonants.
     private function startsWithTwoConsonants($word)
     {
         if (strlen($word) < 2) {
@@ -95,6 +109,7 @@ class PigLatin
         return !$this->isVowel($word[0]) && !$this->isVowel($word[1]);
     }
 
+    // Determines whether a word starts with a vowel.
     private function startsWithVowel($word)
     {
         if (strlen($word) < 1) {
