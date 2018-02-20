@@ -1,20 +1,20 @@
 <?php
-require('helpers.php');
-require('PigLatin.php');
-require('Form.php');
+require 'helpers.php';
+require 'PigLatin.php';
+require 'Form.php';
 
-use p2\PigLatin;
 use DWA\Form;
+use p2\PigLatin;
 
-$form       = new Form($_POST);
-$text       = isset($text) ?? '';
-$suffix     = $form->get('suffix');
-$short      = $form->has('short');
+$form = new Form($_POST);
+$text = isset($text) ?? '';
+$suffix = $form->get('suffix');
+$short = $form->has('short');
 $translated = isset($translated) ?? '';
 
 if ($form->isSubmitted()) {
     $errors = $form->validate([
-        'text' => 'required'
+        'text' => 'required',
     ]);
 
     if (!$form->hasErrors) {
