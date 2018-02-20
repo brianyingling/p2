@@ -4,7 +4,6 @@ namespace p2;
 
 class PigLatin
 {
-
     private $text;
     private $suffix;
     private $shortWordsUntouched;
