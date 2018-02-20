@@ -1,7 +1,13 @@
 <form method='POST' action='index.php'>
     
     <div class='form-group row'>
-        <label for='text' class='col-sm-2 col-form-label'>Text to Translate</label>
+        <div class="col-sm-2">
+            <label for='text' class='col-form-label'>
+                Text to Translate
+            </label>
+            <div class='small red'>* Required</div>
+            </div>
+        </label>
         <div class='col-sm-10'>
             <textarea name='text' cols='15' rows='10' class='form-control'><?= $form->prefill('text') ?></textarea>
         </div>
