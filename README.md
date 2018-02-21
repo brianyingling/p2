@@ -5,7 +5,7 @@
 ## Outside resources
 - Bootstrap: <https://getbootstrap.com/>
 - Susan Buck's Form class: <https://github.com/susanBuck/dwa15-php/blob/master/includes/Form.php>
-- Pig image: From Cosmos Magazine after searching 'pigs' in Google: <https://cosmosmagazine.com/the-future/robots-heal-injured-pig-oesaphagus>
+- Pig image: From *Cosmos Magazine* after searching 'pigs' in Google: <https://cosmosmagazine.com/the-future/robots-heal-injured-pig-oesaphagus>
 - php.net: <http://www.php.net/>
 
 ## Notes for instructor
