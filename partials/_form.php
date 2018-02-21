@@ -9,7 +9,7 @@
             </div>
         </label>
         <div class='col-sm-10'>
-            <textarea name='text' cols='15' rows='10' class='form-control'><?= $form->prefill('text') ?></textarea>
+            <textarea id='text' name='text' cols='15' rows='10' class='form-control'><?= $form->prefill('text') ?></textarea>
         </div>
     </div>
     
@@ -18,8 +18,8 @@
             <label for='suffix'>Suffix</label>
         </div>
         <div class='col-sm-10'>
-            <input type='radio' name='suffix' value='ay' <?= ($suffix == 'ay' || !isset($suffix)) ? 'checked' : ''?>> "ay"
-            <input type='radio' name='suffix' value='a' <?= ($suffix == 'a') ? 'checked' : ''?>> "a"
+            <input type='radio' id='suffix' name='suffix' value='ay' <?= ($suffix == 'ay' || !isset($suffix)) ? 'checked' : ''?>> "ay"
+            <input type='radio' id='suffix' name='suffix' value='a' <?= ($suffix == 'a') ? 'checked' : ''?>> "a"
         </div>
     </div>
 
@@ -51,7 +51,7 @@
             <label for='short'>Optional Rules</label>
         </div>
         <div class='col-sm-10'>
-            <input type='checkbox' name='short' <?= $short ? 'checked' : '' ?>>
+            <input type='checkbox' id='short' name='short' <?= $short ? 'checked' : '' ?>>
             Words that are shorter than three characters are left as is. 
             Example: <em>an => an</em>
         </div>
