@@ -14,7 +14,7 @@
     
     <div class='form-group row'>
         <div class='col-sm-2 col-form-label'>
-            <label for='suffix'>Suffix</label>
+            <label>Suffix</label>
         </div>
         <div class='col-sm-10'>
             <input type='radio' name='suffix' value='ay' <?= ($suffix == 'ay' || !isset($suffix)) ? 'checked' : ''?>> "ay"
