@@ -7,7 +7,6 @@
             </label>
             <div class='small red'>* Required</div>
             </div>
-        </label>
         <div class='col-sm-10'>
             <textarea id='text' name='text' cols='15' rows='10' class='form-control'><?= $form->prefill('text') ?></textarea>
         </div>
@@ -18,8 +17,8 @@
             <label for='suffix'>Suffix</label>
         </div>
         <div class='col-sm-10'>
-            <input type='radio' id='suffix' name='suffix' value='ay' <?= ($suffix == 'ay' || !isset($suffix)) ? 'checked' : ''?>> "ay"
-            <input type='radio' id='suffix' name='suffix' value='a' <?= ($suffix == 'a') ? 'checked' : ''?>> "a"
+            <input type='radio' name='suffix' value='ay' <?= ($suffix == 'ay' || !isset($suffix)) ? 'checked' : ''?>> "ay"
+            <input type='radio' name='suffix' value='a' <?= ($suffix == 'a') ? 'checked' : ''?>> "a"
         </div>
     </div>
 
